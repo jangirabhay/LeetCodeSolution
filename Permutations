@@ -1,0 +1,30 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        getpermute(nums, 0, ans);
+        return ans;
+    }
+
+    static void getpermute(int[] nums, int index, List<List<Integer>> ans) {
+        if (index == nums.length) {
+            List<Integer> internal = new ArrayList<>();
+            for (int value : nums) {
+                internal.add(value);
+            }
+            ans.add(internal);
+            return;
+        }
+
+        for (int i = index; i < nums.length; i++) {
+            swap(nums, index, i);
+            getpermute(nums, index + 1, ans);
+            swap(nums, index, i);
+
+        }
+    }
+    static void swap(int[] arr, int index, int i){
+        int temp = arr[index];
+        arr[index] = arr[i];
+         arr[i] = temp;
+    }
+}
