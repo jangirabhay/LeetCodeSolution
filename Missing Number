@@ -1,0 +1,30 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        int last = nums.length;
+        sorted(nums,last);
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] != i){
+                return i;
+            }
+        }
+        return last;
+    }
+    static void sorted(int[] nums, int last) {
+
+        int start = 0;
+        while (start < nums.length) {
+            int correct_pos = nums[start];
+            if (nums[start] == last || nums[start] == nums[correct_pos]) {
+                start++;
+            } else {
+                swap(nums, start, correct_pos);
+            }
+        }
+    }
+
+    static void swap(int[] nums, int start, int correct_pos) {
+        int temp = nums[start];
+        nums[start] = nums[correct_pos];
+        nums[correct_pos] = temp;
+    }
+}
