@@ -1,0 +1,17 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int[] mix = new int[nums.length];
+        int n = nums.length;
+        k = k%n;
+        for(int i=0; i<nums.length; i++){
+            mix[(i+k)%n] = nums[i];
+        }
+
+        int i=0;
+        while(i<nums.length){
+            nums[i] = mix[i+0];
+            i++;
+        }
+        return;
+    }
+}
