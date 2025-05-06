@@ -1,0 +1,34 @@
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+         ArrayList<Integer> list = new ArrayList<>();
+        createlist(list, numbers, target);
+        int i = 0;
+        int j = 0;
+        int n = list.size();
+        int[] ans = new int[n];
+        while (i < ans.length) {
+            ans[i] = list.get(j);
+            i++;
+            j++;
+        }
+
+        return ans;
+    }
+     public static void createlist(ArrayList<Integer> list, int[] numbers, int target) {
+        int i = 0;
+        int j = numbers.length - 1;
+
+        while (i != j) {
+            int sum = numbers[i] + numbers[j];
+            if (sum > target) {
+                j--;
+            } else if (sum < target) {
+                i++;
+            } else {
+                list.add(i+1);
+                list.add(j+1);
+                break;
+            }
+        }
+    }
+}
