@@ -1,0 +1,22 @@
+class Solution {
+    public ListNode modifiedList(int[] nums, ListNode head) {
+        Set<Integer> toRemove = new HashSet<>();
+        for (int val : nums) {
+            toRemove.add(val);
+        }
+
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+        ListNode temp = head;
+
+        while (temp != null) {
+            if (!toRemove.contains(temp.val)) {
+                current.next = new ListNode(temp.val);
+                current = current.next;
+            }
+            temp = temp.next;
+        }
+
+        return dummy.next;
+    }
+}
