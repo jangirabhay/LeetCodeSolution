@@ -1,0 +1,37 @@
+class Solution {
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+
+        int index = 0;
+        ListNode temp = list1;
+        while (index < a) {
+            current.next = new ListNode(temp.val);
+            temp = temp.next;
+            current = current.next;
+            index++;
+        }
+
+        ListNode temp2 = list2;
+
+        while (temp2 != null) {
+            current.next = new ListNode(temp2.val);
+            current = current.next;
+            temp2 = temp2.next;
+        }
+
+        while (index <= b) {
+            temp = temp.next;
+            index++;
+        }
+
+        // Step 4: Connect remaining nodes from list1 after b
+        while (temp != null) {
+            current.next = new ListNode(temp.val);
+            current = current.next;
+            temp = temp.next;
+        }
+
+        return dummy.next;
+    }
+}
